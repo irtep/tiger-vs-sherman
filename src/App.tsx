@@ -5,6 +5,7 @@ import Menu from './components/Menu';
 import PreBattle from './components/PreBattle';
 import Battle from './components/Battle';
 import AfterBattle from './components/AferBattle';
+import battleImage from './assets/sultanAldildo.png';
 
 const App: React.FC = (): React.ReactElement => {
 
@@ -15,27 +16,36 @@ const App: React.FC = (): React.ReactElement => {
   return (
     <>
       <TVSProvider>
-        {
-          (view === 'menu')
-            ? <Menu/>
-            : <></>
-        }
-        {
-          (view === 'preBattle')
-            ? <PreBattle/>
-            : <></>
-        }
-        {
-          (view === 'battle')
-            ? <Battle/>
-            : <></>
-        }
-        {
-          (view === 'afterBattle')
-            ? <AfterBattle    />
-            : <></>
-        }
-      </TVSProvider>
+        <div
+          style={{
+            backgroundImage: `url(${battleImage})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            height: '100vh'
+          }}
+        >
+          {
+            (view === 'menu')
+              ? <Menu />
+              : <></>
+          }
+          {
+            (view === 'preBattle')
+              ? <PreBattle />
+              : <></>
+          }
+          {
+            (view === 'battle')
+              ? <Battle />
+              : <></>
+          }
+          {
+            (view === 'afterBattle')
+              ? <AfterBattle />
+              : <></>
+          }
+        </div>
+      </TVSProvider >
     </>
   )
 }

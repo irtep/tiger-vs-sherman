@@ -4,7 +4,7 @@ import App from './App.tsx'
 
 document.body.style.margin = '0';
 document.body.style.padding = '0';
-document.body.style.backgroundColor = 'black';
+document.body.style.backgroundColor = 'rgb(172, 116, 12)';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
