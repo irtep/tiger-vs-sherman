@@ -1,21 +1,23 @@
-import { useContext } from 'react'
-import { TVSProvider } from './context/TVScontext';
-import { TVSContext } from './context/TVScontext';
+import { useEffect } from 'react'
+import { useTVSContext } from './context/TVScontext';
 import Menu from './components/Menu';
 import PreBattle from './components/PreBattle';
 import Battle from './components/Battle';
-import AfterBattle from './components/AferBattle';
+import AfterBattle from './components/AfterBattle';
 import battleImage from './assets/sultanAldildo.png';
 
 const App: React.FC = (): React.ReactElement => {
 
   const {
     view
-  } = useContext(TVSContext);
+  } = useTVSContext();
+
+  useEffect( () => {
+    console.log('view: ', view);
+  });
 
   return (
     <>
-      <TVSProvider>
         <div
           style={{
             backgroundImage: `url(${battleImage})`,
@@ -45,7 +47,6 @@ const App: React.FC = (): React.ReactElement => {
               : <></>
           }
         </div>
-      </TVSProvider >
     </>
   )
 }

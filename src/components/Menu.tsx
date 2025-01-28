@@ -1,22 +1,42 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import Footer from './Footer';
-import { armies, Army } from '../data/armies';
-import { TVSContext } from '../context/TVScontext';
+import { armies } from '../data/armies';
+import { useTVSContext } from '../context/TVScontext';
 import { warButton } from '../styles/styles';
+import { Army } from '../sharedInterfaces/sharedInterfaces';
 
 const Menu: React.FC = (): React.ReactElement => {
     const [selectedOption, setSelectedOption] = useState<string>('');
     const [selectedOption2, setSelectedOption2] = useState<string>('');
     const {
-        setView
-    } = useContext(TVSContext);
+        setView,
+        gameObject,
+        setGameObject
+    } = useTVSContext();
 
     const handleChange = (event: React.ChangeEvent<HTMLSelectElement>, player: boolean): void => {
-        player
-            ? setSelectedOption(event.target.value)
-            : setSelectedOption2(event.target.value);
-    };
+        const selectedArmy: Army | undefined = armies.find((a: Army) => event.target.value === a.name);
 
+        if (selectedArmy) {
+            player
+                ? setGameObject({
+                    ...gameObject,
+                    playersArmy: selectedArmy
+                })
+                : setGameObject({
+                    ...gameObject,
+                    opponentsArmy: selectedArmy
+                });
+        };
+    };
+    /*
+        useEffect( () => {
+            setGameObject({
+                ...gameObject,
+                playersArmy: [] 
+            });
+        }, [selectedOption, selectedOption2]);
+    */
     return (
         <div>
             <div
@@ -34,7 +54,7 @@ const Menu: React.FC = (): React.ReactElement => {
                     <label htmlFor="selectYourTeam">Choose your team: </label>
                     <select
                         id="selectYourTeam"
-                        value={selectedOption}
+                        value={gameObject.playersArmy.name}
                         onChange={(e) => {
                             handleChange(e, true);
                         }}>
@@ -53,7 +73,7 @@ const Menu: React.FC = (): React.ReactElement => {
                     <label htmlFor="selectOpponentTeam">Choose an opponent: </label>
                     <select
                         id="selectOpponentTeam"
-                        value={selectedOption2}
+                        value={gameObject.opponentsArmy.name}
                         onChange={(e) => {
                             handleChange(e, false);
                         }}>
@@ -70,10 +90,13 @@ const Menu: React.FC = (): React.ReactElement => {
                     {
                         (selectedOption !== '' && selectedOption2 !== '')
                             ? <>
-                                <br/>
+                                <br />
                                 <button
                                     style={warButton}
-                                    onClick={() => { setView('preBattle') }}
+                                    onClick={() => {
+                                        setView('preBattle');
+                                        console.log('clicked to preBattle');
+                                    }}
                                 >Go to war</button>
                             </>
                             : <p>select armies for you and your opponent, to play.</p>
