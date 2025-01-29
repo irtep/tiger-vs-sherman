@@ -1,13 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Footer from './Footer';
 import { armies } from '../data/armies';
 import { useTVSContext } from '../context/TVScontext';
 import { warButton } from '../styles/styles';
 import { Army } from '../sharedInterfaces/sharedInterfaces';
 
-const Menu: React.FC = (): React.ReactElement => {
-    const [selectedOption, setSelectedOption] = useState<string>('');
-    const [selectedOption2, setSelectedOption2] = useState<string>('');
+const Menu: React.FC = (): React.ReactElement => {      
     const {
         setView,
         gameObject,
@@ -29,14 +27,7 @@ const Menu: React.FC = (): React.ReactElement => {
                 });
         };
     };
-    /*
-        useEffect( () => {
-            setGameObject({
-                ...gameObject,
-                playersArmy: [] 
-            });
-        }, [selectedOption, selectedOption2]);
-    */
+
     return (
         <div>
             <div
@@ -88,7 +79,7 @@ const Menu: React.FC = (): React.ReactElement => {
                     </select>
 
                     {
-                        (selectedOption !== '' && selectedOption2 !== '')
+                        (gameObject.playersArmy.name !== '' && gameObject.opponentsArmy.name !== '')
                             ? <>
                                 <br />
                                 <button
