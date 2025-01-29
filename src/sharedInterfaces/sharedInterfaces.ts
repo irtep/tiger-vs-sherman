@@ -1,8 +1,50 @@
+export interface Coordinate {
+    x: number;
+    y: number;
+};
+
+export interface Weapon {
+    name: string;
+    range: number;
+    antiTank: number;
+    firePower: number;
+    reloadTime: number;
+    coolDown: number;
+    specials: string[];
+};
+
 export interface Team {
+    id: string;
     commander: 'player' | 'ai';
     name: string;
     type: 'infantry' | 'gun' | 'tank';
-    stats: any;
+    def: number;
+    speed: number;
+    mat: number;
+    rat: number;
+    skill: number;
+    save: number;
+    armour: {front: number, side: number, top: number};
+    faction: string;
+    img: {side: string, top: string, hull: string, turret: string};
+    effects: string[];
+    specials: string[];
+    desc: string;
+    order: string;
+    weapons: Weapon[];
+    unit: string;
+    transportCapacity: number;
+    transportingUnits: string[];
+    nickname: string;
+    moveTarget: Coordinate;
+    targetUnit: string;
+    crossSkill: number;
+    points: number;
+    height: number;
+    width: number;
+    theaters: string[];
+    horsepowers: number;
+    weight: number;
 };
 
 export interface Obstacle {
