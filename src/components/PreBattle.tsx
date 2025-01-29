@@ -5,13 +5,14 @@ import { warButton } from '../styles/styles';
 const PreBattle: React.FC = (): React.ReactElement => {
 
     const {
-        setView
+        setView,
+        gameObject
     } = useTVSContext();
     
     // setup teams
     // in further versions, here player can choose his teams
     useEffect( () => {
-
+        console.log('go at preBattle: ', gameObject);
     },[]);
 
     return (
