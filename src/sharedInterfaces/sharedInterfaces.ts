@@ -11,6 +11,7 @@ export interface Weapon {
     reloadTime: number;
     coolDown: number;
     specials: string[];
+    turret: boolean;
 };
 
 export interface Team {
