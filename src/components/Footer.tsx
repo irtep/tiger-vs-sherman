@@ -29,7 +29,7 @@ const Footer: React.FC = (): React.ReactElement => {
                 <img src={huntingTiger} alt="tiger tank" height={100} style={{margin: 5}}/>
             </div>
             <p>
-                Version: 0.1.1
+                Version: 0.2.0
             </p>
         </div>
     );
